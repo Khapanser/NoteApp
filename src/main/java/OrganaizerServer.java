@@ -57,6 +57,7 @@ public class OrganaizerServer {
                 //socket.close();
                 Thread.sleep(1000);
 
+
                 //попробуем в том же потоке принимать данные, если оно требуется
                 //oos.close();
 

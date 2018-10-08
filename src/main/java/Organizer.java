@@ -75,13 +75,13 @@ public class Organizer {
             //Build the first menu.
         menu = new JMenu("File");
         menuBar.add(menu);
-        loadMenuItem = new JMenuItem("Загрузить последнюю версию с сервера");
-        menu.add(loadMenuItem);
-        writeLocalyItem = new JMenuItem("Сохранить последнюю версию локально");
-        menu.add(writeLocalyItem);
-        loadLocalyItem = new JMenuItem("Загрузить локальную версию");
+        loadLocalyItem = new JMenuItem("Open");
         menu.add(loadLocalyItem);
-        writeMenuItem = new JMenuItem("Сохранить последнюю версию на сервер");
+        writeLocalyItem = new JMenuItem("Save as");
+        menu.add(writeLocalyItem);
+        loadMenuItem = new JMenuItem("Download from server");
+        menu.add(loadMenuItem);
+        writeMenuItem = new JMenuItem("Upload to server");
         menu.add(writeMenuItem);
 
         /**
