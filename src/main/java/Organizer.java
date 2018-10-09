@@ -42,6 +42,7 @@ public class Organizer {
 
     // Объявляем сокет
     Socket socket;
+    Socket socket2;
     // Указываем порт подключения
     int portNumber = 5000;
 
@@ -288,24 +289,26 @@ public class Organizer {
             wrs.writer(listModel,file123);
             //Получим path
             Path path = Paths.get("C:\\Users\\AKhaperskiy\\OrganizerClientFiles\\ForServer.xml");
-            //Записываем файл в byte[]
+            System.out.println("Записываем файл в byte[]");
             try {
                 data = Files.readAllBytes(path);
             } catch(Exception ry){ry.printStackTrace();}
-
+            System.out.println("Запись файла в byte[]закончена");
             // Получили выслать байты:
             System.out.println("Высылаемый 10ый байт = "+data[10]);
-            while (true)
-            {
+
+            //while (true)
+            //{
                 try {
-                    socket = new Socket("127.0.0.1", portNumber);
-                    ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
+                    socket2 = new Socket("127.0.0.1", 5001);
+                    ObjectOutputStream oos = new ObjectOutputStream(socket2.getOutputStream());
+                    //oos.writeBytes("Send");
                     oos.writeObject(data);
                     //Thread.sleep(1000);
 
-                    //oos.close();
+                    oos.close();
                 } catch(Exception rq){rq.printStackTrace();}
-            }
+            //}
 
         });
 

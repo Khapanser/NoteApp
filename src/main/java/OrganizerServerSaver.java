@@ -1,12 +1,18 @@
 package main.java;
 
 import javax.swing.*;
-import java.io.*;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketException;
 import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+
 
 /**
  * В рамках первой версии, сервер должен:
@@ -20,17 +26,17 @@ import java.nio.file.Path;
  * TODO 3. В методе run описать считывание byte[] с клиента
  * TODO 4. Преобразовать byte[] в XML-файл.
  */
-public class OrganaizerServer {
+public class OrganizerServerSaver {
     ServerSocket serverSocket;
-    int portNumber = 5000;
+    int portNumber = 5001;
     Socket socket;
     //Socket clientSocket;
     byte[] b;
-
+    byte bb;
     private static DefaultListModel<QCard> listModel;
 
     public static void main(String[] args){
-        OrganaizerServer server = new OrganaizerServer();
+        OrganizerServerSaver server = new OrganizerServerSaver();
 
         try {
             server.go();
@@ -40,19 +46,72 @@ public class OrganaizerServer {
         }
     }
 
-        //Делаем synchronize в метод
     public void go(){
-        try {
-            serverSocket = new ServerSocket(portNumber);
-            while(true) {
-                socket = serverSocket.accept();
+        ObjectInputStream  ois;
+        ArrayList<Byte> list = new ArrayList<>();
+       /* try {*/
+            try {
+                serverSocket = new ServerSocket(portNumber);
+            } catch (IOException ioe){};
 
+            while(true) {
+
+
+                try {
+                    socket = serverSocket.accept();
+                    System.out.println("Клиент подключился.");
+                    ois = new ObjectInputStream(socket.getInputStream());
+                   // FileOutputStream fos2 = new FileOutputStream("C:\\Users\\AKhaperskiy\\OrganizerClientFiles\\3ttt.xml");
+                   // while (ois.readObject() != null) {
+                        System.out.println("в цикле while");
+                        //if (ois.read() == -1) break;
+                        //this.b = (byte[]) ois.readObject();
+
+                        this.b = (byte[]) ois.readObject();
+
+                        //fos2.write(bb);
+                        //list.add(bb);
+
+                    //}
+                    //System.out.println("Прочитанный 10ыйй байт = "+b[10]);
+                    //fos2.close();
+                    //System.out.println("list.size = "+ list.size() );
+                    //Byte[] bbb = list.toArray(new Byte[list.size()]);
+                    System.out.println("Выводим записанные байты:");
+                    for(byte bo: b){
+                        System.out.print(bo);
+                    }
+                    System.out.println("");
+
+                    try (FileOutputStream fos2 = new FileOutputStream("C:\\Users\\AKhaperskiy\\OrganizerServerFiles\\test.xml")) {
+                        System.out.println("Записываем эти байты в файл...");
+                        fos2.write(b);
+                        fos2.close();
+                    }
+                    System.out.println("Закрываем сокет...");
+                    socket.close();
+
+                } /*catch (Exception e) {
+                    e.printStackTrace();
+                }*/
+
+                catch (Exception eu) {
+                    System.out.println("Exception caught when trying to listen on port "
+                            + portNumber + " or listening for a connection");
+                }
+                /*catch (Exception se) {
+                    System.out.println("Exception caught when trying to listen on port "
+                            + portNumber + " or listening for a connection");
+                }*/
+
+
+           //    ---------------------------------------------------------------------
                 //Преобразуем file to byte[]
-                Path path = Paths.get("C:\\Users\\AKhaperskiy\\OrganizerServerFiles\\test.xml");
-                byte[] data = Files.readAllBytes(path);
+                //Path path = Paths.get("C:\\Users\\AKhaperskiy\\OrganizerServerFiles\\test.xml");
+                //byte[] data = Files.readAllBytes(path);
                 //Отправляем файл на клиент:
-                ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
-                oos.writeObject(data);
+                //ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
+               // oos.writeObject(data);
 
 
                 //System.out.println("Дошли до отправки файла");
@@ -62,11 +121,7 @@ public class OrganaizerServer {
                 ////////////// ДОБАВИЛ ЗАКРЫТИЕ СОКЕТА ПОСЛЕ ПЕРЕДАЧИ
                 //socket.close();
                 //Thread.sleep(1000);
-                try {
-                    socket.close();
-                } catch (IOException e) {
-                    System.out.println("Exception caught when trying to listen on port "
-                            + portNumber + " or listening for a connection");
+
                     //попробуем в том же потоке принимать данные, если оно требуется
                     //oos.close();
 
@@ -78,12 +133,12 @@ public class OrganaizerServer {
                     //Thread thread = new Thread(new ClientHandler(socket));
                     // thread.start();
 
-                }
+               /* try {
+                    socket.close();
+                } */
+
             }
-        } catch(Exception e){
-            System.out.println("SERVER: Ошибка в методе go()");
-            e.printStackTrace();
-        }
+       /* }*/
     }
 
     /**
@@ -112,8 +167,8 @@ public class OrganaizerServer {
                 e.printStackTrace();
             }
         }
-                //reader = new BufferedReader(isReader);
-            public void run () {
+        //reader = new BufferedReader(isReader);
+        public void run () {
             System.out.println ("method run is started");
             try {
                 while (ois.readObject() != null) {
@@ -133,7 +188,7 @@ public class OrganaizerServer {
                 } catch (Exception y){y.printStackTrace();}
 */
 
-            }
+        }
 
 
     }
