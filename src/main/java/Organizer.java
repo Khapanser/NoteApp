@@ -297,18 +297,13 @@ public class Organizer {
             // Получили выслать байты:
             System.out.println("Высылаемый 10ый байт = "+data[10]);
 
-            //while (true)
-            //{
                 try {
                     socket2 = new Socket("127.0.0.1", 5001);
                     ObjectOutputStream oos = new ObjectOutputStream(socket2.getOutputStream());
-                    //oos.writeBytes("Send");
                     oos.writeObject(data);
-                    //Thread.sleep(1000);
 
                     oos.close();
                 } catch(Exception rq){rq.printStackTrace();}
-            //}
 
         });
 
