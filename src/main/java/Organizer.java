@@ -9,6 +9,7 @@ import java.net.Socket;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import org.apache.log4j.Logger;
 
 public class Organizer {
     private JFrame frame;
@@ -48,12 +49,16 @@ public class Organizer {
 
     byte[] data;
 
+    //LOGGER
+    final static Logger LOGGER = Logger.getLogger(Organizer.class);
+
     public static void main(String[] args){
         Organizer org = new Organizer();
         org.go();
     }
 
     private  void go(){
+        LOGGER.debug("Organaizer.go() method started...");
         /**
          * Создаем DefaultListModel для добавления
          * в него карт из файла.
@@ -153,12 +158,12 @@ public class Organizer {
         editor1.setFont(font2);
         editor2.setFont(font2);
 
-        //Добавим скроллы на редакторы
+        //Scrolls for editor1
         JScrollPane scroller1 = new JScrollPane(editor1);
         scroller1.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
         scroller1.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
-        //Добавим скроллы на редакторы
+        //Scrolls for editor2
         JScrollPane scroller2 = new JScrollPane(editor2);
         scroller2.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
         scroller2.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -173,7 +178,7 @@ public class Organizer {
         mainPanel.add(BorderLayout.NORTH, panel1);
         mainPanel.add(BorderLayout.SOUTH,panel2);
 
-        //Добавлен menuBar
+        //menuBar added
         frame.setJMenuBar(menuBar);
         frame.add(mainPanel);
         frame.setSize(1000, 800);
@@ -188,6 +193,7 @@ public class Organizer {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 if(!list.isSelectionEmpty()) {
+                    LOGGER.debug("Mouse clicked");
                     selCard = list.getSelectedValue();
                     editor1.setText(selCard.getTitle());
                     System.out.println("selCard.getTitle() = " + selCard.getTitle());
@@ -201,6 +207,7 @@ public class Organizer {
          * Слушаем сохранение изменений (Button Save)
          */
         saveButton.addActionListener(event -> {
+            LOGGER.debug("Save started...");
             selCard.setTitle(editor1.getText());
             selCard.setDescription(editor2.getText());
             list.updateUI();  // отображение изменений в списке( title)
@@ -210,6 +217,7 @@ public class Organizer {
          * Слушаем создание новой заметки (Button NEW)
          */
         newButton.addActionListener(event -> {
+            LOGGER.debug("New card event...");
             QCard newCard = new QCard("new","new");
             listModel.addElement(newCard);
         });
@@ -218,6 +226,7 @@ public class Organizer {
          * Удаление элемента из списка (Button DELETE)
          */
        delButton.addActionListener(event -> {
+           LOGGER.debug("Delete card event...");
            if (!list.isSelectionEmpty()) {
                listModel.removeElement(selCard);
                //selCard = listModel.firstElement();
@@ -228,6 +237,7 @@ public class Organizer {
          * Пишем обратно в файл со всеми изменениями
          */
        loadLocalyItem.addActionListener(event -> {
+           LOGGER.debug("Download local data...");
            XmlParser loadFile = new XmlParser();
            JFileChooser fileOpen = new JFileChooser();
            fileOpen.showOpenDialog(openFrame);
@@ -240,6 +250,7 @@ public class Organizer {
        });
 
        writeLocalyItem.addActionListener(event -> {
+           LOGGER.debug("Write to local event...");
            XmlWriter wr = new XmlWriter();
            JFileChooser fileSave = new JFileChooser();
            fileSave.showSaveDialog(frame);
@@ -247,6 +258,7 @@ public class Organizer {
        });
 
         loadMenuItem.addActionListener(event -> {
+            LOGGER.debug("Download from server event...");
             System.out.println("Попытка загрузить файл с сервера...");
             try {
                 socket = new Socket("127.0.0.1", portNumber);
@@ -282,6 +294,7 @@ public class Organizer {
         });
 
         writeMenuItem.addActionListener(event -> {
+            LOGGER.debug("Upload to server event...");
             System.out.println("Загружаем файл на сервер...");
             //Сначала сохраним текущую версию локально в рабочую директорию
             File file123 = new File("C:\\Users\\AKhaperskiy\\OrganizerClientFiles\\ForServer.xml");

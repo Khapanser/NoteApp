@@ -20,7 +20,7 @@ public class OrganaizerServer {
             server.go();
         } catch(Exception e){
             e.printStackTrace();
-            System.out.println("SERVER: файл уже редактируется другим пользователем");
+            System.err.println("SERVER_WARN: synchronized");
         }
     }
 
@@ -40,12 +40,12 @@ public class OrganaizerServer {
                 try {
                     socket.close();
                 } catch (IOException e) {
-                    System.out.println("Exception caught when trying to listen on port "
+                    System.err.println("Exception caught when trying to listen on port "
                             + portNumber + " or listening for a connection");
                 }
             }
         } catch(Exception e){
-            System.out.println("SERVER: Ошибка в методе go()");
+            System.err.println("SERVER_ERROR: method go() failed");
             e.printStackTrace();
         }
     }
