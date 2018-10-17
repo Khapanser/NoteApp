@@ -218,7 +218,18 @@ public class Organizer {
          */
         newButton.addActionListener(event -> {
             LOGGER.debug("New card event...");
-            QCard newCard = new QCard("new","new");
+            QCard newCard = new QCard2();
+            //check if newCard = QCard2
+            //QCard2 Card2 = (QCard2) newCard;
+            System.out.println("-----------------------------------------------------");
+            System.out.println("Карточка создана:" + ((QCard2) newCard).getFormatedCreateDate());
+            System.out.println("Уровень важности:" +((QCard2) newCard).getLevel());
+            System.out.println("Состояние готовности: " +((QCard2) newCard).isDone());
+            System.out.println("Заголовок:" +((QCard2) newCard).getTitle());
+            System.out.println("Содержание:" +((QCard2) newCard).getDescription());
+            System.out.println("-----------------------------------------------------");
+
+
             listModel.addElement(newCard);
         });
 

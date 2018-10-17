@@ -5,6 +5,12 @@ public class QCard {
     private String title;
     private String description;
 
+    public QCard ()
+    {
+        this.title = "title";
+        this.description = "Enter description here";
+    }
+
     public QCard(String t, String d)
     {
         this.title = t;
