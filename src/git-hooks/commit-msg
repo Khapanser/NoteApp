@@ -1,0 +1,18 @@
+#!/bin/sh
+#
+
+if test $(grep -c "^[^#].*[^[:space:]]" $1) = 0
+then
+    exit 0
+fi
+
+cat $1 > ~/tmp/asd.asd
+
+
+if test $(cat "$1" | LC_ALL=C tr -d '[ -~]\0\t\r\n' | wc -c) != 0
+then
+	cat <<\EOF
+Commit failed: Non-ASCII commit message!
+EOF
+	exit 1
+fi
