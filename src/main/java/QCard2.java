@@ -23,7 +23,8 @@ public class QCard2 extends QCard {
         super.setDescription(description);
     }
 
-    public QCard2 () {
+    public QCard2 ()
+    {
         super();
         this.done = false;
         this.createDate = new Date();

@@ -1,0 +1,24 @@
+#!/bin/sh
+# Based on default git hook
+
+
+exec 1>&2
+
+
+if test $(git diff --cached --name-only --diff-filter=A -z HEAD | LC_ALL=C tr -d '[ -~]\0' | wc -c) != 0
+then
+	cat <<\EOF
+Commit failed: Attempt to add a non-ASCII file name.
+EOF
+	exit 1
+fi
+
+
+# only @gmail123.com emails in commits are allowed
+if test $(git config user.email | grep -c '@gmail.com$') = 0
+then
+	cat <<\EOF
+Commit failed: Invalid email. Only gmail123.com emails permitted
+EOF
+	exit 1
+fi
