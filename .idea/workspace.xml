@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3583513b-5f78-4272-9e62-c09190f483f1" name="Default" comment="QCard extended">
-      <change afterPath="$PROJECT_DIR$/src/main/java/OrgLogin.java" afterDir="false" />
+    <list default="true" id="3583513b-5f78-4272-9e62-c09190f483f1" name="Default" comment="Login added">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Organizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Organizer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/git-hooks/commit-msg" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/git-hooks/commit-msg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/java/Organizer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/java/Organizer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/java/QCard2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/java/QCard2.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -38,15 +39,15 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="2854" />
+          <entry key="java" value="2859" />
           <entry key="pre-commit" value="6" />
-          <entry key="txt" value="28" />
+          <entry key="txt" value="42" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="2854" />
-          <entry key="PLAIN_TEXT" value="34" />
+          <entry key="JAVA" value="2859" />
+          <entry key="PLAIN_TEXT" value="48" />
         </counts>
       </usages-collector>
     </session>
@@ -80,8 +81,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/OrgLogin.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="382">
-              <caret line="123" column="13" selection-start-line="123" selection-start-column="13" selection-end-line="123" selection-end-column="13" />
+            <state relative-caret-position="140">
+              <caret line="64" lean-forward="true" selection-start-line="64" selection-end-line="64" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -108,6 +109,7 @@
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
       <list>
+        <option value="khapanser &lt;khapanser@gmail.com&gt;" />
         <option value="khapersky &lt;khapanser@gmail.com&gt;" />
       </list>
     </option>
@@ -197,7 +199,7 @@
     <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1539873780070" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1539875870660" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
@@ -461,15 +463,21 @@
       <option name="project" value="LOCAL" />
       <updated>1539779540467</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Login added">
+      <created>1539873854030</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1539873854030</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14420000" />
+    <option name="totallyTimeSpent" value="15339000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16684435" />
       <window_info id="Structure" order="1" weight="0.25" />
@@ -572,7 +580,8 @@
     <MESSAGE value="Remove unused code" />
     <MESSAGE value="Logger added" />
     <MESSAGE value="QCard extended" />
-    <option name="LAST_COMMIT_MESSAGE" value="QCard extended" />
+    <MESSAGE value="Login added" />
+    <option name="LAST_COMMIT_MESSAGE" value="Login added" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
@@ -687,8 +696,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/OrgLogin.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="382">
-          <caret line="123" column="13" selection-start-line="123" selection-start-column="13" selection-end-line="123" selection-end-column="13" />
+        <state relative-caret-position="140">
+          <caret line="64" lean-forward="true" selection-start-line="64" selection-end-line="64" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

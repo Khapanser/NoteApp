@@ -109,7 +109,7 @@ public class OrgLogin {
 
                 if(count==1) {
                     JOptionPane.showMessageDialog(null,"User FOUND!");
-                    Organizer org = new Organizer();
+                    Organizer org = new Organizer(user);
                     org.go();
                     frame.dispose();
                 }

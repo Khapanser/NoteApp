@@ -36,6 +36,7 @@ public class Organizer {
     private  JMenuItem writeLocalyItem;
     private JMenuItem loadLocalyItem;
     private  JMenuItem writeMenuItem;
+    String userName;
 
     // Jlist for all QCards
     JList<QCard> list;
@@ -51,6 +52,14 @@ public class Organizer {
 
     //LOGGER
     final static Logger LOGGER = Logger.getLogger(Organizer.class);
+
+    public Organizer(String userName){
+        this.userName = userName;
+    }
+
+    public Organizer(){
+
+    }
 
     public static void main(String[] args){
         Organizer org = new Organizer();
