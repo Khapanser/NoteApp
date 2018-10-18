@@ -57,7 +57,7 @@ public class Organizer {
         org.go();
     }
 
-    private  void go(){
+    protected  void go(){
         LOGGER.debug("Organaizer.go() method started...");
         /**
          * Создаем DefaultListModel для добавления
