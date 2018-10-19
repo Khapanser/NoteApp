@@ -2,8 +2,10 @@ package main.java;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.WindowEvent;
 import java.sql.*;
+
 
 public class OrgLogin {
 
@@ -26,9 +28,9 @@ public class OrgLogin {
 
         public void connect(){
 
-            try {
+            /*try {
 
-                String driver = "sun.jdbc.odbc.Jdbc0dbcDriver";
+                String driver = "com.mysql.jdbc.Driver";
                 Class.forName(driver);
 
                 String db = "jdbc:odbc:db1";
@@ -38,12 +40,29 @@ public class OrgLogin {
             catch (Exception ex){
 
                 System.err.println("Connection to DB refused!");
-            }
+            }*/
+
+
+            try{
+                Class.forName("com.mysql.jdbc.Driver");
+                con=DriverManager.getConnection(
+                        "jdbc:mysql://localhost:3306/noteapp_1","root","root");
+//here sonoo is database name, root is username and password
+                //Statement stmt=con.createStatement();
+               // ResultSet rs=stmt.executeQuery("select * from login");
+               /* while(rs.next())
+                    System.out.println(rs.getInt(1)+"  "+rs.getString(2)+"  "+rs.getString(3));
+                con.close();*/
+            }catch(Exception e){ System.out.println(e);}
+
         }
 
+        public void check(){
 
 
-        private void go(){
+        }
+
+        public void go(){
             Font font = new Font("TimesRoman", Font.BOLD,18);
             Font font2  = new Font("TimesRoman",Font.PLAIN,18);
 
@@ -88,33 +107,39 @@ public class OrgLogin {
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 
-            button.addActionListener(event -> {
+            button.addActionListener((ActionEvent event) -> {
 
                 String user = editor1.getText().trim();
                 String pass = editor2.getText().trim();
-                String sql = "SELECT user, pass FROM tableName where user = '"+user+"' AND pass='"+pass+"';";
+                String sql = "SELECT * FROM login where user = '"+user+"' AND pass='"+pass+"'";
+                //String sql = "SELECT * FROM login";
+                System.out.println("Query is: "+sql);
                 try {
-                    rs = st.executeQuery(sql);
+                    Statement stmt=con.createStatement();
+                    ResultSet rs=stmt.executeQuery(sql);
+                    //rs = stmt.executeQuery(sql);
 
                 count = 0;
                 while(rs.next())
                 {
-                    count = count++;
+                    System.out.println(rs.getInt(1)+"  "+rs.getString(2)+"  "+rs.getString(3));
+                    count = count+1;
+                    System.out.println("count="+count);
+                }
+                    System.out.println("count="+count);
+                }
+                catch (SQLException e){
+                    System.err.println("WARN: SQL execution failed!");
                 }
 
-                }
-                catch (Exception e){
-                    System.err.println("SQL execution failed!");
-                }
-
-                if(count==1) {
-                    JOptionPane.showMessageDialog(null,"User FOUND!");
+                if(count>0) {
+                    JOptionPane.showMessageDialog(null,"Your organizer opening!");
                     Organizer org = new Organizer(user);
                     org.go();
                     frame.dispose();
                 }
                 else {
-                    JOptionPane.showMessageDialog(null,"User NOT FOUND!");
+                    JOptionPane.showMessageDialog(null,"User not found or password incorrect! Try again.");
                 }
 
 

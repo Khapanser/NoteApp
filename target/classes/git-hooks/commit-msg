@@ -6,7 +6,6 @@ then
     exit 0
 fi
 
-
 if test $(cat "$1" | LC_ALL=C tr -d '[ -~]\0\t\r\n' | wc -c) != 0
 then
 	cat <<\EOF
